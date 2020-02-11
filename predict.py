@@ -10,3 +10,5 @@ def predict_type(image, model):
     img_tensor = np.expand_dims(img_tensor, axis=0)
     res = list(model.predict(img_tensor)[0])
     type = waste_types[res.index(np.max(res))]
+
+    return type

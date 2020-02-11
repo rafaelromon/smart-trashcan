@@ -3,6 +3,8 @@ from importlib import import_module
 import os
 from flask import Flask, render_template, Response
 import tensorflow as tf
+import cv2
+import numpy as np
 
 # import camera driver
 if os.environ.get('CAMERA'):
@@ -23,6 +25,23 @@ app = Flask(__name__)
 def index():
     """Video streaming home page."""
     return render_template('index.html')
+
+
+@app.route('/classify')
+def classify():
+    frame = Camera().get_frame()
+
+    waste_types = ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash']
+    img = cv2.imread(frame)
+    img = cv2.resize(img, dsize=(224, 224), interpolation=cv2.INTER_CUBIC)
+    img_tensor = np.array(img)
+    img_tensor = np.expand_dims(img_tensor, axis=0)
+    res = list(model.predict(img_tensor)[0])
+    type = waste_types[res.index(np.max(res))]
+
+    print(type)
+
+    return type
 
 
 def gen(camera):
