@@ -2,12 +2,16 @@
 from importlib import import_module
 import os
 from flask import Flask, render_template, Response
+import tensorflow as tf
 
 # import camera driver
 if os.environ.get('CAMERA'):
     Camera = import_module('camera_' + os.environ['CAMERA']).Camera
 else:
     from camera_opencv import Camera
+
+path_model = os.path.join('model.h5')
+model = tf.keras.models.load_model(path_model, compile=False)
 
 # Raspberry Pi camera module (requires picamera package)
 # from camera_pi import Camera
