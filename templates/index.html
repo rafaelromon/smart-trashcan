@@ -9,6 +9,7 @@
     <h3>Test</h3>
         <form>
             <a href=# id=test><button class='btn btn-default'>Test</button></a>
+            <label for='type'>Type: </label><input type='text' disabled id='type' />
         </form>
     </div>
   </body>
@@ -20,10 +21,11 @@
 <script type=text/javascript>
         $(function() {
           $('#test').bind('click', function() {
-            $.getJSON('/background_process_test',
+            $.getJSON('/classify',
                 function(data) {
+                    document.getElementById("type").value = data;
             });
-            return false;
+            return "";
           });
         });
 </script>
