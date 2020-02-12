@@ -33,7 +33,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Smart Trashcan is a simple program aimed at powering up your recycling using IoT and *Machine Learning*.
+Smart Trashcan is a simple program aimed at powering up your recycling using IoT and *Deep Learning*.
 
 ### Built With
 
@@ -75,7 +75,6 @@ sudo apt-get install libatlas-base-dev libjasper-dev libqtgui4 python3-pyqt5 lib
 
 ```sh
 sudo apt install influxdb
-sudo apt-get install libatlas-base-dev libjasper-dev libqtgui4 python3-pyqt5 libqt4-test
 ```
 
 * Tensorflow and Keras
