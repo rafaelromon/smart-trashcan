@@ -124,18 +124,17 @@
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="weight">Weight</label>
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                           for="weight">Weight</label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="number" id="weight" name="weight"
-                                               value="0.0" class="form-control" >
+                                               value="0.0" class="form-control">
                                     </div>
                                 </div>
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">
                                     <div class="col-md-6 col-sm-6 offset-md-3">
-                                        <a href=# id=test>
-                                            <button class='btn btn-primary'>Classify</button>
-                                        </a>
+                                        <button id="classify" type="button" class='btn btn-primary'>Classify</button>
                                         <button type="submit" class="btn btn-success">Submit</button>
                                     </div>
                                 </div>
@@ -159,6 +158,19 @@
         <!-- /footer content -->
     </div>
 </div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+    $(function () {
+        $('#classify').bind('click', function () {
+            $.ajax({
+                url: "/classify", success: function (data) {
+                    $("#type").val(data);
+                }
+            });
+        });
+    });
+</script>
 
 <!-- jQuery -->
 <script src="static/vendors/jquery/dist/jquery.min.js"></script>
@@ -200,19 +212,6 @@
 
 <!-- Custom Theme Scripts -->
 <script src="static/build/js/custom.min.js"></script>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type=text/javascript>
-    $(function () {
-        $('#test').bind('click', function () {
-            $.getJSON('/classify',
-                function (data) {
-                    document.getElementById("type").value = data;
-                });
-            return "";
-        });
-    });
-</script>
 
 
 </body>
