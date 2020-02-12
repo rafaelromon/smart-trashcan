@@ -1,31 +1,220 @@
-<html>
-  <head>
-    <title>SMART TRASHCAN</title>
-  </head>
-  <body>
-    <h1>驚くほどスマートなゴミ箱</h1>
-    <img src="{{ url_for('video_feed') }}">
-    <div class='container'>
-    <h3>Test</h3>
-        <form>
-            <a href=# id=test><button class='btn btn-default'>Test</button></a>
-            <label for='type'>Type: </label><input type='text' disabled id='type' />
-        </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico" type="image/ico"/>
+
+    <title>驚くほどスマートなゴミ箱</title>
+
+    <!-- Bootstrap -->
+    <link href="static/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="static/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="static/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="static/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="static/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="static/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="static/build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md footer_fixed">
+<div class="container body">
+    <div class="main_container">
+
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Smart Trashcan</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="static/images/mascot.png" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span>おかえりなさい</span>
+                        <h2>主人</h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br/>
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <ul class="nav side-menu">
+                            <li><a href="/"><i class="fa fa-home"></i>ホーム</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <div class="sidebar-footer hidden-small">
+                    <a data-toggle="tooltip" data-placement="top" title="Settings">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Lock">
+                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <div class="nav toggle">
+                    <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                </div>
+                <nav class="nav navbar-nav">
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main" style="min-height: 100vh;">
+            <!-- /top tiles -->
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>リサイクルしましょう</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="col-md-6 col-sm-6">
+                            <img class="center-block img-thumbnail" src="{{ url_for('video_feed') }}" alt="..">
+                        </div>
+
+                        <div class="col-md-4 col-sm-4 " style="border:0px solid #e5e5e5;">
+                            <form id="form" action="/" method="post" data-parsley-validate="" class="form-horizontal form-label-left"
+                                  novalidate="">
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-sudo3 label-align" for="type">Type</label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input type="text" id="type" name="type"
+                                               value="none" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="weight">Weight</label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input type="number" id="weight" name="weight"
+                                               value="0.0" class="form-control" >
+                                    </div>
+                                </div>
+                                <div class="ln_solid"></div>
+                                <div class="item form-group">
+                                    <div class="col-md-6 col-sm-6 offset-md-3">
+                                        <a href=# id=test>
+                                            <button class='btn btn-primary'>Classify</button>
+                                        </a>
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="cd pull-right">
+                Smart Trashcan - Based on
+                <a href="https://github.com/ColorlibHQ/gentelella">Gentelella</a> by <a
+                    href="https://colorlib.com/">Colorlib</a>
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
     </div>
-  </body>
+</div>
 
-</html>
+<!-- jQuery -->
+<script src="static/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="static/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!-- FastClick -->
+<script src="static/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="static/vendors/nprogress/nprogress.js"></script>
+<!-- Chart.js -->
+<script src="static/vendors/Chart.js/dist/Chart.min.js"></script>
+<!-- gauge.js -->
+<script src="static/vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="static/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="static/vendors/iCheck/icheck.min.js"></script>
+<!-- Skycons -->
+<script src="static/vendors/skycons/skycons.js"></script>
+<!-- Flot -->
+<script src="static/vendors/Flot/jquery.flot.js"></script>
+<script src="static/vendors/Flot/jquery.flot.pie.js"></script>
+<script src="static/vendors/Flot/jquery.flot.time.js"></script>
+<script src="static/vendors/Flot/jquery.flot.stack.js"></script>
+<script src="static/vendors/Flot/jquery.flot.resize.js"></script>
+<!-- Flot plugins -->
+<script src="static/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+<script src="static/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+<script src="static/vendors/flot.curvedlines/curvedLines.js"></script>
+<!-- DateJS -->
+<script src="static/vendors/DateJS/build/date.js"></script>
+<!-- JQVMap -->
+<script src="static/vendors/jqvmap/dist/jquery.vmap.js"></script>
+<script src="static/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+<script src="static/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="static/vendors/moment/min/moment.min.js"></script>
+<script src="static/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
+<!-- Custom Theme Scripts -->
+<script src="static/build/js/custom.min.js"></script>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type=text/javascript>
-        $(function() {
-          $('#test').bind('click', function() {
+    $(function () {
+        $('#test').bind('click', function () {
             $.getJSON('/classify',
-                function(data) {
+                function (data) {
                     document.getElementById("type").value = data;
-            });
+                });
             return "";
-          });
         });
+    });
 </script>
+
+
+</body>
+</html>
+
