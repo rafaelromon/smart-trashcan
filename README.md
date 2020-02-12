@@ -67,7 +67,7 @@ To get a local copy up and running follow these simple steps.
 ### Prerequisites
 * Python and Supporting Packages
 ```sh
-sudo apt install python3 python3-dev
+sudo apt install python3 python3-dev python3-pip
 sudo apt-get install libatlas-base-dev libjasper-dev libqtgui4 python3-pyqt5 libqt4-test
 ```
 
@@ -90,7 +90,7 @@ git clone https://github.com/rafaelromon/smart-trashcan
 ```
 2. Install Python packages, you may need to include the --no-cache-dir flag.
 ```sh
-sudo pip install -r requirements.txt
+sudo pip3 install -r requirements.txt
 ```
 
 3. [Configure InfluxDB](https://docs.influxdata.com/influxdb/v1.7/introduction/getting-started/) and edit setting.py
