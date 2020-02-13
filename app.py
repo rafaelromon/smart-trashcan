@@ -34,7 +34,7 @@ def index():
     """Video streaming home page."""
 
     if request.method == "POST":
-        weight = int(request.form['weight'])
+        weight = request.form['weight']
         garbage_type = request.form['type']
 
         json_data = [{
@@ -44,7 +44,7 @@ def index():
                 "garbage_type": garbage_type
             },
             "fields": {
-                "weight": weight
+                "weight": float(weight)
             }
         }]
 
