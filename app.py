@@ -35,7 +35,7 @@ def index():
 
     if request.method == "POST":
         weight = request.form['weight']
-        garbage_type = request.form['type']
+        garbage_type = int(request.form['type'])
 
         json_data = [{
             "measurement": "trash",
