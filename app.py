@@ -11,6 +11,8 @@ from tensorflow.python.keras.backend import set_session
 from flask import Flask, render_template, Response, request
 
 # import camera driver
+import db_utils
+
 if os.environ.get('CAMERA'):
     Camera = import_module('camera_' + os.environ['CAMERA']).Camera
 else:
@@ -25,6 +27,7 @@ set_session(sess)
 model = tf.keras.models.load_model(base_path + "/models/improved_model.h5", compile=False)
 
 app = Flask(__name__)
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -45,14 +48,13 @@ def index():
             }
         }]
 
-        print(json_data)
+        db_utils.InfluxDB().write(json_data)
 
     return render_template('index.html')
 
 
 @app.route('/classify')
 def classify():
-
     global sess
     global graph
 
@@ -65,7 +67,7 @@ def classify():
     img = cv2.resize(img_np, dsize=(224, 224), interpolation=cv2.INTER_CUBIC)
     img_tensor = np.array(img)
     img_tensor = np.expand_dims(img_tensor, axis=0)
-    
+
     with graph.as_default():
         set_session(sess)
         result = list(model.predict(img_tensor)[0])
