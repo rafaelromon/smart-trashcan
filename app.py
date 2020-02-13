@@ -6,6 +6,8 @@ from importlib import import_module
 import cv2
 import numpy as np
 import tensorflow as tf
+from tensorflow.python.keras.backend import set_session
+
 from flask import Flask, render_template, Response, request
 
 # import camera driver
@@ -16,10 +18,13 @@ else:
 
 base_path = os.path.dirname(os.path.realpath(__file__))  # This fixes some filepath errors in RPi3
 
+sess = tf.Session()
+graph = tf.get_default_graph()
+
+set_session(sess)
 model = tf.keras.models.load_model(base_path + "/models/improved_model.h5", compile=False)
 
 app = Flask(__name__)
-
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -47,6 +52,10 @@ def index():
 
 @app.route('/classify')
 def classify():
+
+    global sess
+    global graph
+
     waste_types = ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash']
 
     frame = Camera().get_frame()
@@ -56,8 +65,12 @@ def classify():
     img = cv2.resize(img_np, dsize=(224, 224), interpolation=cv2.INTER_CUBIC)
     img_tensor = np.array(img)
     img_tensor = np.expand_dims(img_tensor, axis=0)
-    res = list(model.predict(img_tensor)[0])
-    type = waste_types[res.index(np.max(res))]
+    
+    with graph.as_default():
+        set_session(sess)
+        result = list(model.predict(img_tensor)[0])
+
+    type = waste_types[result.index(np.max(result))]
 
     return type
 
