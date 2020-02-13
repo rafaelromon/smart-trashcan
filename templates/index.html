@@ -114,13 +114,22 @@
                         </div>
 
                         <div class="col-md-4 col-sm-4 " style="border:0px solid #e5e5e5;">
-                            <form id="form" action="/" method="post" data-parsley-validate="" class="form-horizontal form-label-left"
+                            <form id="form" action="/" method="post" data-parsley-validate=""
+                                  class="form-horizontal form-label-left"
                                   novalidate="">
                                 <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-sudo3 label-align" for="type">Type</label>
+                                    <label class="col-form-label col-md-3 col-sm-sudo3 label-align"
+                                           for="type">Type</label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" id="type" name="type"
-                                               value="none" class="form-control">
+                                        <select id="type" class="form-control" name="type">
+                                            <option value="" disabled selected> </option>
+                                            <option value="cardboard">Cardboard</option>
+                                            <option value="glass">Glass</option>
+                                            <option value="metal">Metal</option>
+                                            <option value="paper">Paper</option>
+                                            <option value="plastic">Plastic</option>
+                                            <option value="trash">Trash</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="item form-group">

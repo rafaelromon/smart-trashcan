@@ -32,8 +32,10 @@ def index():
         json_data = [{
             "measurement": "trash",
             "time": datetime.now(),
+            "tags": {
+                "garbage_type": garbage_type
+            },
             "fields": {
-                "garbage_type": garbage_type,
                 "weight": weight
             }
         }]
