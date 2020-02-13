@@ -12,6 +12,7 @@ from flask import Flask, render_template, Response, request
 
 # import camera driver
 import db_utils
+import mi_scale
 
 if os.environ.get('CAMERA'):
     Camera = import_module('camera_' + os.environ['CAMERA']).Camera
@@ -44,7 +45,7 @@ def index():
                 "garbage_type": garbage_type
             },
             "fields": {
-                "weight": float(weight)
+                "weight": float(mi_scale.getPeso())
             }
         }]
 
