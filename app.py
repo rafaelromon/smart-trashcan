@@ -24,7 +24,7 @@ sess = tf.Session()
 graph = tf.get_default_graph()
 
 set_session(sess)
-model = tf.keras.models.load_model(base_path + "/models/improved_model.h5", compile=False)
+model = tf.keras.models.load_model(base_path + "/models/last_model.h5", compile=False)
 
 app = Flask(__name__)
 
